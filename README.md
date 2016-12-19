@@ -1,2 +1,1 @@
-#[![Build Status](https://travis-ci.org/mvlbarcelos/logs.svg?branch=master)](https://travis-ci.org/mvlbarcelos/logs)
-#[![Coverage Status](https://coveralls.io/repos/github/mvlbarcelos/logs/badge.svg?branch=master)](https://coveralls.io/github/mvlbarcelos/logs?branch=master)
+#[![Coverage Status](https://coveralls.io/repos/github/mvlbarcelos/logs/badge.svg?branch=master)](https://coveralls.io/github/mvlbarcelos/logs?branch=master)  [![Build Status](https://travis-ci.org/mvlbarcelos/logs.svg?branch=master)](https://travis-ci.org/mvlbarcelos/logs)
