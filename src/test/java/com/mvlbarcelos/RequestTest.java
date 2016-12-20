@@ -38,6 +38,7 @@ public class RequestTest {
 	@Test
 	public void shouldParseLineToRequest() throws Exception {
 		request = new Request("2013-10-23T10:12:35.271Z 2013-10-23T10:12:35.471Z eckakaau service6 22buxmqp->bm6il56t");
+		assertThat(request.getId(), is("eckakaau"));
 		assertThat(request.getService(), is("service6"));
 		assertThat(request.getCallerSpan(), is("22buxmqp"));
 		assertThat(request.getSpan(), is("bm6il56t"));

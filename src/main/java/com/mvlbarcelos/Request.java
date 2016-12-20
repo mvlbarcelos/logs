@@ -11,8 +11,10 @@ import com.mvlbarcelos.exception.InvalidLineException;
 public class Request {
 
 	private static final String VALIDATION_MESSAGE_SIZE = "The line should have 5 elements, but have %s.";
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_ZONED_DATE_TIME;
 	
+	@JsonIgnore
+	private String id;
 	private LocalDateTime start;
 	private LocalDateTime end;
 	private String service;
@@ -24,8 +26,9 @@ public class Request {
 		String[] informations = line.split(" ");
 		validate(informations);
 
-		this.start = LocalDateTime.parse(informations[0], formatter);
-		this.end = LocalDateTime.parse(informations[1], formatter);
+		this.start = LocalDateTime.parse(informations[0], FORMATTER) ;
+		this.end = LocalDateTime.parse(informations[1], FORMATTER) ;
+		this.id = informations[2];
 		this.service = informations[3];
 		String[] spans = informations[4].split("->");
 		this.callerSpan = "null".equals(spans[0]) ? null : spans[0];
@@ -62,6 +65,10 @@ public class Request {
 
 	public List<Request> getCalls() {
 		return calls;
+	}
+	
+	public String getId() {
+		return id;
 	}
 
 	@JsonIgnore
