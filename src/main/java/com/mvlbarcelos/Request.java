@@ -2,21 +2,23 @@ package com.mvlbarcelos;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mvlbarcelos.exception.InvalidLineException;
 
 public class Request {
 
 	private static final String VALIDATION_MESSAGE_SIZE = "The line should have 5 elements, but have %s.";
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSz");
-
+	
 	private LocalDateTime start;
 	private LocalDateTime end;
 	private String service;
 	private String callerSpan;
 	private String span;
-	private List<Request> calls;
+	private List<Request> calls = new ArrayList<>();
 
 	public Request(String line) {
 		String[] informations = line.split(" ");
@@ -49,6 +51,7 @@ public class Request {
 		return service;
 	}
 
+	@JsonIgnore
 	public String getCallerSpan() {
 		return callerSpan;
 	}
@@ -61,7 +64,12 @@ public class Request {
 		return calls;
 	}
 
+	@JsonIgnore
 	public boolean isRoot() {
 		return this.getCallerSpan() == null;
+	}
+
+	public void setCalls(List<Request> calls) {
+		this.calls = calls;
 	}
 }
