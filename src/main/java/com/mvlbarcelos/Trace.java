@@ -4,16 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Trace {
 
 	private String id;
 	private Request root;
 	
-	private ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
 	public Trace(String id, List<Request> request) {
 		this.id = id;
 		createCallsTree(request);
@@ -44,6 +40,6 @@ public class Trace {
 	}
 	
 	public String writeJson() throws JsonProcessingException{
-		return mapper.writeValueAsString(this);
+		return Main.mapper.writeValueAsString(this);
 	}
 }

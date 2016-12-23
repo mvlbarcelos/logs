@@ -42,8 +42,8 @@ public class RequestTest {
 		assertThat(request.getService(), is("service6"));
 		assertThat(request.getCallerSpan(), is("22buxmqp"));
 		assertThat(request.getSpan(), is("bm6il56t"));
-		assertThat(request.getStart().toString(), is("2013-10-23T10:12:35.271"));
-		assertThat(request.getEnd().toString(), is("2013-10-23T10:12:35.471"));
+		assertThat(request.getStart(), is("2013-10-23T10:12:35.271Z"));
+		assertThat(request.getEnd(), is("2013-10-23T10:12:35.471Z"));
 	}
 
 }
