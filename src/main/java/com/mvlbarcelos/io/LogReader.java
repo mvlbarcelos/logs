@@ -7,6 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import com.mvlbarcelos.exception.InvalidLineException;
 import com.mvlbarcelos.trace.Request;
 import com.mvlbarcelos.trace.TraceCreator;
 import com.mvlbarcelos.util.TraceUtils;
@@ -61,8 +62,8 @@ public class LogReader implements Runnable{
 				executor.submit(new TraceCreator(request.getId()));
 			}
 
-		} catch (Exception e) {
-			// TODO
+		} catch (InvalidLineException e) {
+			System.err.println(currentLine);
 		}
 	}
 
