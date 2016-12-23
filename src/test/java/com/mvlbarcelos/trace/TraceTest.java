@@ -25,7 +25,7 @@ public class TraceTest {
 		assertThat(trace.getId(), is(ID));
 		Assert.assertNotNull(trace.getRoot());
 		assertThat(trace.getRoot().isRoot(), is(true));
-		assertThat(trace.writeJson(), is(json));
+		assertThat(trace.toJson(), is(json));
 	}
 
 	private List<Request> createRequests() {

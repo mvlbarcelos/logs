@@ -13,11 +13,12 @@ public class TraceCreator implements Runnable {
 
 	@Override
 	public void run() {
+		Trace trace = null;
 		try {
-			Trace trace = new Trace(id, Main.requests.get(id));
-			Main.output.put(id, trace.writeJson());
+			trace = new Trace(id, Main.requests.get(id));
+			Main.output.put(id, trace.toJson());
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			System.err.println(String.format("Fail to convert to json trace %s", trace.getId()));
 		} finally {
 			Main.requests.remove(id);
 		}

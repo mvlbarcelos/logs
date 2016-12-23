@@ -40,7 +40,7 @@ public class Trace {
 		return root;
 	}
 	
-	public String writeJson() throws JsonProcessingException{
+	public String toJson() throws JsonProcessingException{
 		return Main.mapper.writeValueAsString(this);
 	}
 }
