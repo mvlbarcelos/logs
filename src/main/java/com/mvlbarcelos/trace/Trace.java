@@ -1,9 +1,10 @@
-package com.mvlbarcelos;
+package com.mvlbarcelos.trace;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mvlbarcelos.Main;
 
 public class Trace {
 

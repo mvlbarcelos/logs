@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mvlbarcelos.Main;
-import com.mvlbarcelos.Request;
+import com.mvlbarcelos.trace.Request;
 
 public class TraceUtils {
 

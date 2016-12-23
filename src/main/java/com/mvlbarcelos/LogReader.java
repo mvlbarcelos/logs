@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import com.mvlbarcelos.trace.Request;
+import com.mvlbarcelos.trace.TraceWriter;
 import com.mvlbarcelos.util.TraceUtils;
 
 public class LogReader {

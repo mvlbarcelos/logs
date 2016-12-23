@@ -1,4 +1,4 @@
-package com.mvlbarcelos;
+package com.mvlbarcelos.trace;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -9,6 +9,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mvlbarcelos.trace.Request;
+import com.mvlbarcelos.trace.Trace;
 
 public class TraceTest {
 
