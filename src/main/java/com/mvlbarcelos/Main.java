@@ -7,6 +7,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.mvlbarcelos.io.JsonWriter;
+import com.mvlbarcelos.io.LogReader;
 import com.mvlbarcelos.trace.Request;
 
 public class Main {
@@ -17,6 +19,15 @@ public class Main {
 			.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		 new LogReader(args[0]);
+
+		Runnable reader = new LogReader(args[0]);
+		Thread readerThread = new Thread(reader);
+		readerThread.setName("reader");
+		readerThread.start();
+
+		Runnable write = new JsonWriter();
+		Thread writerThread = new Thread(write);
+		writerThread.setName("writer");
+		writerThread.start();
 	}
 }
