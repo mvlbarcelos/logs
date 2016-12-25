@@ -20,7 +20,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 
-		Runnable reader = new LogReader(args[0]);
+		Runnable reader = new LogReader();
 		Thread readerThread = new Thread(reader);
 		readerThread.setName("reader");
 		readerThread.start();

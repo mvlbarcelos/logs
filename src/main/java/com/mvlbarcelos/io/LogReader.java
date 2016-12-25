@@ -15,21 +15,20 @@ import com.mvlbarcelos.util.TraceUtils;
 public class LogReader implements Runnable{
 
 	private static final long ONE_SECOND = 1000;
-	private String filePath;
 	private int totalCores;
 	private ThreadPoolExecutor executor;
 
-	public LogReader(String filePath) throws IOException {
+	public LogReader() throws IOException {
 		totalCores = Runtime.getRuntime().availableProcessors();
 		executor = new ThreadPoolExecutor(totalCores,
 										  totalCores,
 										  1000,
 										  TimeUnit.MILLISECONDS,
 										  new LinkedBlockingQueue<Runnable>());
-		this.filePath = filePath;
 	}
 
 	private void read() {
+		String filePath = System.getProperty("inputFile");
 		try {
 			BufferedReader input = new BufferedReader(new FileReader(filePath));
 			String currentLine = null;
