@@ -10,11 +10,7 @@ public class JsonWriter implements Runnable {
 	public void run() {
 		while (true) {
 			if (!Main.output.isEmpty()) {
-
-				for (String key : Main.output.keySet()) {
-					System.out.println(Main.output.get(key));
-					Main.output.remove(key);
-				}
+				print();
 				continue;
 			}
 			try {
@@ -23,6 +19,13 @@ public class JsonWriter implements Runnable {
 				Thread.currentThread().interrupt();
 				break;
 			}
+		}
+	}
+
+	void print() {
+		for (String key : Main.output.keySet()) {
+			System.out.println(Main.output.get(key));
+			Main.output.remove(key);
 		}
 	}
 }

@@ -27,7 +27,8 @@ public class LogReader implements Runnable{
 										  new LinkedBlockingQueue<Runnable>());
 	}
 
-	private void read() {
+	@Override
+	public void run() {
 		String filePath = System.getProperty("inputFile");
 		try {
 			BufferedReader input = new BufferedReader(new FileReader(filePath));
@@ -64,10 +65,5 @@ public class LogReader implements Runnable{
 		} catch (Exception e) {
 			System.err.println(currentLine);
 		}
-	}
-
-	@Override
-	public void run() {
-		read();
 	}
 }
