@@ -15,6 +15,8 @@ public class TraceCreatorTest {
 
 	@Before
 	public void setUp(){
+		Main.output.clear();
+		Main.requests.clear();
 		request2 = new Request("2013-10-23T10:12:35.318Z 2013-10-23T10:12:35.370Z eckakaau service3 bm6il56t->22buxmqp");
 		request = new Request("2013-10-23T10:12:35.271Z 2013-10-23T10:12:35.471Z eckakaau service6 null->bm6il56t");
 		TraceUtils.putRequestInMap(request);

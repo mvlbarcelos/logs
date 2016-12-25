@@ -18,7 +18,7 @@ public class LogReader implements Runnable{
 	private int totalCores;
 	private ThreadPoolExecutor executor;
 
-	public LogReader() throws IOException {
+	public LogReader() {
 		totalCores = Runtime.getRuntime().availableProcessors();
 		executor = new ThreadPoolExecutor(totalCores,
 										  totalCores,
@@ -52,7 +52,7 @@ public class LogReader implements Runnable{
 		}
 	}
 
-	private void parseLineToRequest(String currentLine) {
+	void parseLineToRequest(String currentLine) {
 		try {
 			Request request = new Request(currentLine);
 

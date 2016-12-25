@@ -3,6 +3,7 @@ package com.mvlbarcelos.trace;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mvlbarcelos.Main;
 
@@ -40,6 +41,7 @@ public class Trace {
 		return root;
 	}
 	
+	@JsonIgnore
 	public String toJson() throws JsonProcessingException{
 		return Main.mapper.writeValueAsString(this);
 	}
