@@ -1,3 +1,4 @@
+
 package com.mvlbarcelos.io;
 
 import java.io.BufferedReader;
@@ -7,7 +8,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import com.mvlbarcelos.exception.InvalidLineException;
 import com.mvlbarcelos.trace.Request;
 import com.mvlbarcelos.trace.TraceCreator;
 import com.mvlbarcelos.util.TraceUtils;
@@ -21,8 +21,8 @@ public class LogReader implements Runnable{
 
 	public LogReader(String filePath) throws IOException {
 		totalCores = Runtime.getRuntime().availableProcessors();
-		executor = new ThreadPoolExecutor(totalCores - 2,
-										  totalCores - 2,
+		executor = new ThreadPoolExecutor(totalCores,
+										  totalCores,
 										  1000,
 										  TimeUnit.MILLISECONDS,
 										  new LinkedBlockingQueue<Runnable>());
@@ -62,7 +62,7 @@ public class LogReader implements Runnable{
 				executor.submit(new TraceCreator(request.getId()));
 			}
 
-		} catch (InvalidLineException e) {
+		} catch (Exception e) {
 			System.err.println(currentLine);
 		}
 	}
