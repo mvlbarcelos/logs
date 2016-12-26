@@ -4,28 +4,13 @@ package com.mvlbarcelos.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import com.mvlbarcelos.trace.Request;
-import com.mvlbarcelos.trace.TraceCreator;
 import com.mvlbarcelos.util.TraceUtils;
 
 public class LogReader implements Runnable{
 
 	private static final long ONE_SECOND = 1000;
-	private int totalCores;
-	private ThreadPoolExecutor executor;
-
-	public LogReader() {
-		totalCores = Runtime.getRuntime().availableProcessors();
-		executor = new ThreadPoolExecutor(totalCores,
-										  totalCores,
-										  1000,
-										  TimeUnit.MILLISECONDS,
-										  new LinkedBlockingQueue<Runnable>());
-	}
 
 	@Override
 	public void run() {
@@ -56,12 +41,7 @@ public class LogReader implements Runnable{
 	void parseLineToRequest(String currentLine) {
 		try {
 			Request request = new Request(currentLine);
-
 			TraceUtils.putRequestInMap(request);
-			if (request.isRoot()) {
-				executor.submit(new TraceCreator(request.getId()));
-			}
-
 		} catch (Exception e) {
 			System.err.println(currentLine);
 		}
