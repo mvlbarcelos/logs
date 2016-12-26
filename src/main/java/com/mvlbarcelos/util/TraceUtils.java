@@ -1,20 +1,25 @@
 package com.mvlbarcelos.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mvlbarcelos.Main;
 import com.mvlbarcelos.trace.Request;
+import com.mvlbarcelos.trace.TraceInfo;
 
 public class TraceUtils {
 
 	public static void putRequestInMap(Request request) {
-		if (!Main.requests.containsKey(request.getId())) {
-			List<Request> requests = new ArrayList<Request>();
-			requests.add(request);
-			Main.requests.put(request.getId(), requests);
+		setLatestTimeRead(request);
+		TraceInfo traceInfo = Main.requests.get(request.getId());
+		if (traceInfo == null) {
+			traceInfo = new TraceInfo(request);
+			Main.requests.put(request.getId(), traceInfo);
 		} else {
-			Main.requests.get(request.getId()).add(request);
+			traceInfo.addRequest(request);
+		}
+	}
+
+	private static void setLatestTimeRead(Request request) {
+		if (Main.latestTimeRead == null || Main.latestTimeRead.isAfter(request.getStart())) {
+			Main.latestTimeRead = request.getStart();
 		}
 	}
 }
