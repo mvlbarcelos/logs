@@ -14,6 +14,8 @@ public class Request {
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_ZONED_DATE_TIME;
 	
 	@JsonIgnore
+	private String line;
+	@JsonIgnore
 	private String id;
 	private LocalDateTime start;
 	private LocalDateTime end;
@@ -23,6 +25,7 @@ public class Request {
 	private List<Request> calls = new ArrayList<>();
 
 	public Request(String line) {
+		this.line = line;
 		String[] informations = line.split(" ");
 		validate(informations);
 
@@ -78,5 +81,10 @@ public class Request {
 
 	public void setCalls(List<Request> calls) {
 		this.calls = calls;
+	}
+
+	@Override
+	public String toString() {
+		return line;
 	}
 }
