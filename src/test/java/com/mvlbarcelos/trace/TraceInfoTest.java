@@ -16,7 +16,7 @@ public class TraceInfoTest {
 	
 	@Before
 	public void setUp(){
-		request = new Request("2013-10-23T10:12:35.471Z 2013-10-23T10:12:35.771Z eckakaau service6 null->bm6il56t");
+		request = new Request("2013-10-23T10:12:35.471Z 2013-10-23T10:12:35.771Z eckakaau service6 bm6il56t->22buxmqp");
 		rootRequest = new Request("2013-10-23T10:12:35.271Z 2013-10-23T10:12:35.471Z eckakaau service6 null->bm6il56t");
 		traceInfo = new TraceInfo(request);
 		Main.latestTimeRead = rootRequest.getStart().plusSeconds(29);
@@ -50,13 +50,13 @@ public class TraceInfoTest {
 	
 	@Test
 	public void shouldBeNotFinishedWhenHStartTimeIsBeforeTimeOutTime() throws Exception {
-		Main.latestTimeRead = rootRequest.getStart().minusSeconds(29);
+		Main.latestTimeRead = rootRequest.getStart().plusSeconds(29);
 		assertThat(traceInfo.isFinished(), is(false));
 	}
 	
 	@Test
 	public void shouldBeFinishedWhenHStartTimeIsAfterTimeOutTime() throws Exception {
-		Main.latestTimeRead = rootRequest.getStart().minusSeconds(31);
+		Main.latestTimeRead = rootRequest.getStart().plusSeconds(31);
 		assertThat(traceInfo.isFinished(), is(true));
 	}
 	

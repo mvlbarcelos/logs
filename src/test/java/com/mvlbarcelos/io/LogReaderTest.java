@@ -12,8 +12,6 @@ public class LogReaderTest {
 
 	private LogReader logReader;
 
-	
-
 	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
 	@Before

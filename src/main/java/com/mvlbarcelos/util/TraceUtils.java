@@ -18,7 +18,7 @@ public class TraceUtils {
 	}
 
 	private static void setLatestTimeRead(Request request) {
-		if (Main.latestTimeRead == null || Main.latestTimeRead.isAfter(request.getStart())) {
+		if (Main.latestTimeRead == null || Main.latestTimeRead.isBefore(request.getStart())) {
 			Main.latestTimeRead = request.getStart();
 		}
 	}

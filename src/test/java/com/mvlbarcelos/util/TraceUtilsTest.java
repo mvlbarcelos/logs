@@ -28,17 +28,17 @@ public class TraceUtilsTest {
 	}
 
 	@Test
-	public void shouldSetLatestTimeReadWhenLatestTimeReadIsAfterRequestStart() throws Exception {
-		Main.latestTimeRead = request.getStart().plusSeconds(1);
+	public void shouldSetLatestTimeReadWhenLatestTimeReadIsBeforeRequestStart() throws Exception {
+		Main.latestTimeRead = request.getStart().minusSeconds(1);
 		TraceUtils.putRequestInMap(request);
 		assertThat(Main.latestTimeRead, is(request.getStart()));
 	}
 
 	@Test
-	public void shouldNotSetLatestTimeReadWhenLatestTimeReadIsBeforeRequestStart() throws Exception {
-		Main.latestTimeRead = request.getStart().minusSeconds(1);
+	public void shouldNotSetLatestTimeReadWhenLatestTimeReadIsAfterRequestStart() throws Exception {
+		Main.latestTimeRead = request.getStart().plusSeconds(1);
 		TraceUtils.putRequestInMap(request);
-		assertThat(Main.latestTimeRead, is(request.getStart().minusSeconds(1)));
+		assertThat(Main.latestTimeRead, is(request.getStart().plusSeconds(1)));
 	}
 
 	@Test

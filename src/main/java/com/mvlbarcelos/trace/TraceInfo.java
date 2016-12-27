@@ -15,6 +15,7 @@ public class TraceInfo {
 	private List<Request> requests = new ArrayList<>();
 
 	public TraceInfo(Request request) {
+		this.haveRoot = request.isRoot();
 		this.id = request.getId();
 		this.start = request.getStart();
 		this.requests.add(request);
@@ -47,6 +48,6 @@ public class TraceInfo {
 	}
 
 	public boolean isFinished() {
-		return (start.isAfter(Main.latestTimeRead.plusSeconds(TRIRTY_SECOND)));
+		return start.plusSeconds(TRIRTY_SECOND).isBefore(Main.latestTimeRead);
 	}
 }
