@@ -1,4 +1,5 @@
 
+
 package com.mvlbarcelos;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mvlbarcelos.io.JsonWriter;
 import com.mvlbarcelos.io.LogReader;
+import com.mvlbarcelos.trace.CheckFinishedTrace;
 import com.mvlbarcelos.trace.TraceInfo;
 
 public class Main {
@@ -31,5 +33,10 @@ public class Main {
 		Thread writerThread = new Thread(write);
 		writerThread.setName("writer");
 		writerThread.start();
+
+		Runnable finheshedTrace = new CheckFinishedTrace();
+		Thread finheshedTraceThread = new Thread(finheshedTrace);
+		finheshedTraceThread.setName("finheshedTrace");
+		finheshedTraceThread.start();
 	}
 }
