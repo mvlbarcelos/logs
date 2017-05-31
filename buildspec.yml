@@ -6,6 +6,7 @@ phases:
       - yum install -y docker
   pre_build:
     commands:
+      - /etc/rc.d/rc.cgconfig restart
       - /etc/init.d/docker start
   build:
     commands:
