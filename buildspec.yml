@@ -3,11 +3,8 @@ version: 0.1
 phases:
   install:
     commands:
-      - yum install -y docker
-  pre_build:
-    commands:
-      - /etc/rc.d/rc.cgconfig restart
-      - /etc/init.d/docker start
+      - chmod +x codebuild_install.sh
+      - ./codebuild_install.sh
   build:
     commands:
       - mvn clean package
