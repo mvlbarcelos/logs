@@ -4,7 +4,10 @@ phases:
   install:
     commands:
       - yum install -y docker
+  pre_build:
+    commands:
+      - /etc/init/docker start
   build:
     commands:
       - mvn clean package
-      - sudo docker build -t hello-world .
+      - docker build -t hello-world .
