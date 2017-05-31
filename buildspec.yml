@@ -1,0 +1,10 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - yum install -y docker
+  build:
+    commands:
+      - mvn clean package
+      - docker build -t hello-world .
