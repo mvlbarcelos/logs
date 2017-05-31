@@ -6,7 +6,7 @@ phases:
       - yum install -y docker
   pre_build:
     commands:
-      - /etc/init/docker start
+      - /etc/init.d/docker start
   build:
     commands:
       - mvn clean package
