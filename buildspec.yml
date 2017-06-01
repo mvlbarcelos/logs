@@ -7,5 +7,5 @@ phases:
       - ./codebuild_install.sh
   build:
     commands:
-      - mvn clean package
+      - /usr/bin/apache-maven-3.3.9/bin/mvn clean package
       - docker build -t hello-world .
