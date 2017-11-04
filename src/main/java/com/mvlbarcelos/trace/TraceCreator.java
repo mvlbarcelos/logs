@@ -15,7 +15,8 @@ public class TraceCreator implements Runnable {
 	public void run() {
 		Trace trace = null;
 		try {
-			trace = new Trace(id, Main.requests.get(id));
+			TraceInfo traceInfo = Main.requests.get(id);
+			trace = new Trace(id, traceInfo.getRequests());
 			Main.output.put(id, trace.toJson());
 		} catch (JsonProcessingException e) {
 			System.err.println(String.format("Fail to convert to json trace %s", trace.getId()));

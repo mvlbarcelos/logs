@@ -1,5 +1,7 @@
 package com.mvlbarcelos.trace;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,22 +11,26 @@ import com.mvlbarcelos.exception.InvalidLineException;
 public class Request {
 
 	private static final String VALIDATION_MESSAGE_SIZE = "The line should have 5 elements, but have %s.";
+	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_ZONED_DATE_TIME;
 	
 	@JsonIgnore
+	private String line;
+	@JsonIgnore
 	private String id;
-	private String start;
-	private String end;
+	private LocalDateTime start;
+	private LocalDateTime end;
 	private String service;
 	private String callerSpan;
 	private String span;
 	private List<Request> calls = new ArrayList<>();
 
 	public Request(String line) {
+		this.line = line;
 		String[] informations = line.split(" ");
 		validate(informations);
 
-		this.start = informations[0];
-		this.end = informations[1];
+		this.start = LocalDateTime.parse(informations[0], FORMATTER) ;
+		this.end = LocalDateTime.parse(informations[1], FORMATTER) ;
 		this.id = informations[2];
 		this.service = informations[3];
 		String[] spans = informations[4].split("->");
@@ -39,11 +45,11 @@ public class Request {
 		}
 	}
 
-	public String getStart() {
+	public LocalDateTime getStart() {
 		return start;
 	}
 
-	public String getEnd() {
+	public LocalDateTime getEnd() {
 		return end;
 	}
 
@@ -75,5 +81,10 @@ public class Request {
 
 	public void setCalls(List<Request> calls) {
 		this.calls = calls;
+	}
+
+	@Override
+	public String toString() {
+		return line;
 	}
 }
